@@ -1,0 +1,6 @@
+[02-Sep-2014 09:19:28 America/Chicago] PHP Fatal error:  Call to undefined function get_page_link() in /home/pomodor/public_html/wp-content/plugins/calendar-archives/calendar-archives-display.php on line 3
+[02-Sep-2014 09:19:28 America/Chicago] PHP Fatal error:  Call to undefined function settings_fields() in /home/pomodor/public_html/wp-content/plugins/calendar-archives/calendar-archives-options.php on line 24
+[02-Sep-2014 09:19:29 America/Chicago] PHP Fatal error:  Call to undefined function add_shortcode() in /home/pomodor/public_html/wp-content/plugins/calendar-archives/calendar-archives.php on line 49
+[02-Sep-2014 09:59:26 America/Chicago] PHP Fatal error:  Call to undefined function settings_fields() in /home/pomodor/public_html/wp-content/plugins/calendar-archives/calendar-archives-options.php on line 24
+[02-Sep-2014 11:18:45 America/Chicago] PHP Fatal error:  Call to undefined function get_page_link() in /home/pomodor/public_html/wp-content/plugins/calendar-archives/calendar-archives-display.php on line 3
+[02-Sep-2014 12:08:11 America/Chicago] PHP Fatal error:  Call to undefined function add_shortcode() in /home/pomodor/public_html/wp-content/plugins/calendar-archives/calendar-archives.php on line 49
