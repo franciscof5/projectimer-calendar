@@ -21,7 +21,7 @@ input#weekday_background_color_preview {
     <div id="icon-options-general" class="icon32"><br></div>
 	<h2>Calendar Archives Settings - By <a href="http://www.sanisoft.com" target="_blank">SANIsoft</a></h2>
     <form action="options.php" method="post">
-        <?php settings_fields('CalendarArchives_optionsGroup'); ?>
+        <?php settings_fields('ProjectimerCalendar_optionsGroup'); ?>
         <?php do_settings_sections('calendar-archives'); ?>
         <?php submit_button(); ?>
     </form>

@@ -7,7 +7,7 @@ Description: Projectimer is based on Calendar Archives, a visualization plugin f
 Version: 0.1
 Author: Francisco Matelli Matulovic
 Author URI: http://www.franciscomat.com
-Text Domain: projectimer_calendar
+Text Domain: projectimer-calendar
 */
 
 /*  
@@ -29,15 +29,15 @@ Text Domain: projectimer_calendar
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-class CalendarArchives
+class ProjectimerCalendar
 {
     function __construct()
     {
         // Call method to build everything needed by constructor
-        $this->CalendarArchives();
+        $this->ProjectimerCalendar();
     }
 
-    function CalendarArchives()
+    function ProjectimerCalendar()
     {
         // Plugin's directory
         $pluginDirectory = dirname(__FILE__) . DIRECTORY_SEPARATOR;
@@ -87,7 +87,7 @@ class CalendarArchives
         $default = $this->__getDefaultOptions();
 
         // Get saved options
-        $saved = get_option('CalendarArchives_options');
+        $saved = get_option('ProjectimerCalendar_options');
 
         // If possible, merge default and saved options to default one
         if (is_array($saved) && 0 < count($saved))
@@ -98,7 +98,7 @@ class CalendarArchives
         // If saved options are different from merged default options then save merged default options as new one
         if ($saved != $default)
         {
-            update_option('CalendarArchives_options', $default);
+            update_option('ProjectimerCalendar_options', $default);
         }
 
         // Return merged default options
@@ -130,7 +130,7 @@ class CalendarArchives
     function deactivate()
     {
         // Delete plugin's options
-        delete_option('CalendarArchives_options');
+        delete_option('ProjectimerCalendar_options');
     }
 
     function plugin_action_links($links, $file)
@@ -158,27 +158,27 @@ class CalendarArchives
     {
         // Get options, register settings and add 'usage' section
         $options = $this->__getOptions();
-        register_setting('CalendarArchives_optionsGroup', 'CalendarArchives_options', array(&$this, 'sanitizeOptions'));
-        add_settings_section('CalendarArchives_usage', 'Usage', array('CalendarArchivesOptions', 'sectionDescription_usage'), 'calendar-archives');
+        register_setting('ProjectimerCalendar_optionsGroup', 'ProjectimerCalendar_options', array(&$this, 'sanitizeOptions'));
+        add_settings_section('ProjectimerCalendar_usage', 'Usage', array('ProjectimerCalendarOptions', 'sectionDescription_usage'), 'calendar-archives');
 
         // Add 'options' section and its fields
-        add_settings_section('CalendarArchives_options', 'Options', array('CalendarArchivesOptions', 'sectionDescription_options'), 'calendar-archives');
-        add_settings_field('cache', 'Use calendar cache', array('CalendarArchivesOptions', 'field_cache'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'cache', 'writeable' => is_writeable($this->cachePath)) + $options);
-        add_settings_field('layout', 'Default layout (1 or 2)', array('CalendarArchivesOptions', 'field_layout'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'layout') + $options);
-        add_settings_field('hide_no_posts_months', 'Hide months in which no posts', array('CalendarArchivesOptions', 'field_hideNoPostsMonths'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'hide_no_posts_months') + $options);
-        add_settings_field('reverse_months', 'Reverse months', array('CalendarArchivesOptions', 'field_reverseMonths'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'reverse_months') + $options);
-        add_settings_field('show_images', 'Show images', array('CalendarArchivesOptions', 'field_showImages'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'show_images', 'remoteImagesDownloadDisabled' => !(bool)ini_get('allow_url_fopen'), 'writeableForImages' => is_writeable($this->backgroundImagesCachePath)) + $options);
-        add_settings_field('box_dimension', 'Box/image dimension', array('CalendarArchivesOptions', 'field_boxDimension'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'box_dimension') + $options);
-        add_settings_field('first_day_of_week', 'First day of week is', array('CalendarArchivesOptions', 'field_firstDayOfWeek'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'first_day_of_week') + $options);
-        add_settings_field('show_future_posts', 'Display upcoming posts', array('CalendarArchivesOptions', 'field_showFuturePosts'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'show_future_posts') + $options);
-        add_settings_field('browse_by_month', 'Browse by month', array('CalendarArchivesOptions', 'field_browseByMonth'), 'calendar-archives', 'CalendarArchives_options', array('label_for' => 'browse_by_month') + $options);
-        add_settings_field('featured_image_as_background', 'Use featured image as background', array('CalendarArchivesOptions', 'field_featuredImageAsBackground'), 'calendar-archives', 'CalendarArchives_options', $options);
+        add_settings_section('ProjectimerCalendar_options', 'Options', array('ProjectimerCalendarOptions', 'sectionDescription_options'), 'calendar-archives');
+        add_settings_field('cache', 'Use calendar cache', array('ProjectimerCalendarOptions', 'field_cache'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'cache', 'writeable' => is_writeable($this->cachePath)) + $options);
+        add_settings_field('layout', 'Default layout (1 or 2)', array('ProjectimerCalendarOptions', 'field_layout'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'layout') + $options);
+        add_settings_field('hide_no_posts_months', 'Hide months in which no posts', array('ProjectimerCalendarOptions', 'field_hideNoPostsMonths'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'hide_no_posts_months') + $options);
+        add_settings_field('reverse_months', 'Reverse months', array('ProjectimerCalendarOptions', 'field_reverseMonths'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'reverse_months') + $options);
+        add_settings_field('show_images', 'Show images', array('ProjectimerCalendarOptions', 'field_showImages'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'show_images', 'remoteImagesDownloadDisabled' => !(bool)ini_get('allow_url_fopen'), 'writeableForImages' => is_writeable($this->backgroundImagesCachePath)) + $options);
+        add_settings_field('box_dimension', 'Box/image dimension', array('ProjectimerCalendarOptions', 'field_boxDimension'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'box_dimension') + $options);
+        add_settings_field('first_day_of_week', 'First day of week is', array('ProjectimerCalendarOptions', 'field_firstDayOfWeek'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'first_day_of_week') + $options);
+        add_settings_field('show_future_posts', 'Display upcoming posts', array('ProjectimerCalendarOptions', 'field_showFuturePosts'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'show_future_posts') + $options);
+        add_settings_field('browse_by_month', 'Browse by month', array('ProjectimerCalendarOptions', 'field_browseByMonth'), 'calendar-archives', 'ProjectimerCalendar_options', array('label_for' => 'browse_by_month') + $options);
+        add_settings_field('featured_image_as_background', 'Use featured image as background', array('ProjectimerCalendarOptions', 'field_featuredImageAsBackground'), 'calendar-archives', 'ProjectimerCalendar_options', $options);
 
         // Add 'background' section and its fields
-        add_settings_section('CalendarArchives_background', 'Background Colors', array('CalendarArchivesOptions', 'sectionDescription_background'), 'calendar-archives');
-        add_settings_field('weekday_background_color', 'Weekday', array('CalendarArchivesOptions', 'field_weekdayBackgroundColor'), 'calendar-archives', 'CalendarArchives_background', array('label_for' => 'weekday_background_color') + $options);
-        add_settings_field('day_box_background_color', 'Day box', array('CalendarArchivesOptions', 'field_dayBoxBackgroundColor'), 'calendar-archives', 'CalendarArchives_background', array('label_for' => 'day_box_background_color') + $options);
-        add_settings_field('day_background_color', 'Day (for first layout only)', array('CalendarArchivesOptions', 'field_dayBackgroundColor'), 'calendar-archives', 'CalendarArchives_background', array('label_for' => 'day_background_color') + $options);
+        add_settings_section('ProjectimerCalendar_background', 'Background Colors', array('ProjectimerCalendarOptions', 'sectionDescription_background'), 'calendar-archives');
+        add_settings_field('weekday_background_color', 'Weekday', array('ProjectimerCalendarOptions', 'field_weekdayBackgroundColor'), 'calendar-archives', 'ProjectimerCalendar_background', array('label_for' => 'weekday_background_color') + $options);
+        add_settings_field('day_box_background_color', 'Day box', array('ProjectimerCalendarOptions', 'field_dayBoxBackgroundColor'), 'calendar-archives', 'ProjectimerCalendar_background', array('label_for' => 'day_box_background_color') + $options);
+        add_settings_field('day_background_color', 'Day (for first layout only)', array('ProjectimerCalendarOptions', 'field_dayBackgroundColor'), 'calendar-archives', 'ProjectimerCalendar_background', array('label_for' => 'day_background_color') + $options);
     }
 
     function handleOptions()
@@ -663,18 +663,18 @@ class CalendarArchives
     }
 }
 
-class CalendarArchivesOptions
+class ProjectimerCalendarOptions
 {
     function field_boxDimension($options)
     {
         // Ouput field to set box dimension
-        echo '<input type="text" name="CalendarArchives_options[box_dimension]" id="box_dimension" size="10" value="' . $options['box_dimension'] . '" /><p class="description">You can provide dimension for calendar\'s day box. This dimension will also apply to background images displayed.</p>';
+        echo '<input type="text" name="ProjectimerCalendar_options[box_dimension]" id="box_dimension" size="10" value="' . $options['box_dimension'] . '" /><p class="description">You can provide dimension for calendar\'s day box. This dimension will also apply to background images displayed.</p>';
     }
 
     function field_browseByMonth($options)
     {
         // Ouput field to toggle 'browse by month' flag
-        echo '<input type="checkbox" name="CalendarArchives_options[browse_by_month]" id="browse_by_month" ' . checked($options['browse_by_month'], 'on', false) . ' /><p class="description">If enabled, you can browse the calendar by month.</p>';
+        echo '<input type="checkbox" name="ProjectimerCalendar_options[browse_by_month]" id="browse_by_month" ' . checked($options['browse_by_month'], 'on', false) . ' /><p class="description">If enabled, you can browse the calendar by month.</p>';
     }
 
     function field_cache($options)
@@ -682,7 +682,7 @@ class CalendarArchivesOptions
         // Ouput field to toggle 'cache' flag
         if ($options['writeable'])
         {
-            echo '<input type="checkbox" name="CalendarArchives_options[cache]" id="cache" ' . checked($options['cache'], 'on', false) . ' />';
+            echo '<input type="checkbox" name="ProjectimerCalendar_options[cache]" id="cache" ' . checked($options['cache'], 'on', false) . ' />';
         }
         else
         {
@@ -693,21 +693,21 @@ class CalendarArchivesOptions
     function field_dayBackgroundColor($options)
     {
         // Ouput field to set day background color
-        echo '<input type="text" class="backgroundColorPreview" id="day_background_color_preview" size="10" value="Preview" DISABLED /> <input type="text" name="CalendarArchives_options[day_background_color]" class="backgroundColorField" id="day_background_color" size="10" value="' . $options['day_background_color'] . '" />';
+        echo '<input type="text" class="backgroundColorPreview" id="day_background_color_preview" size="10" value="Preview" DISABLED /> <input type="text" name="ProjectimerCalendar_options[day_background_color]" class="backgroundColorField" id="day_background_color" size="10" value="' . $options['day_background_color'] . '" />';
     }
 
     function field_dayBoxBackgroundColor($options)
     {
         // Ouput field to set day box background color
-        echo '<input type="text" class="backgroundColorPreview" id="day_box_background_color_preview" size="10" value="Preview" DISABLED /> <input type="text" name="CalendarArchives_options[day_box_background_color]" class="backgroundColorField" id="day_box_background_color" size="10" value="' . $options['day_box_background_color'] . '" />';
+        echo '<input type="text" class="backgroundColorPreview" id="day_box_background_color_preview" size="10" value="Preview" DISABLED /> <input type="text" name="ProjectimerCalendar_options[day_box_background_color]" class="backgroundColorField" id="day_box_background_color" size="10" value="' . $options['day_box_background_color'] . '" />';
     }
 
     function field_featuredImageAsBackground($options)
     {
         // Output fields to select 'use featured image as background' setting
-        echo '<label><input type="radio" name="CalendarArchives_options[featured_image_as_background]" id="featured_image_as_background" ' . checked($options['featured_image_as_background'], '', false) . ' value="" /> ' . __('Only when available', 'calendar-archives') . '</label><br />';
-        echo '<label><input type="radio" name="CalendarArchives_options[featured_image_as_background]" id="featured_image_as_background_always" ' . checked($options['featured_image_as_background'], 'always', false) . ' value="always" /> ' . __('Always', 'calendar-archives') . '</label><br />';
-        echo '<label><input type="radio" name="CalendarArchives_options[featured_image_as_background]" id="featured_image_as_background_no" ' . checked($options['featured_image_as_background'], 'no', false) . ' value="no" /> ' . __('No', 'calendar-archives') . '</label><br />';
+        echo '<label><input type="radio" name="ProjectimerCalendar_options[featured_image_as_background]" id="featured_image_as_background" ' . checked($options['featured_image_as_background'], '', false) . ' value="" /> ' . __('Only when available', 'calendar-archives') . '</label><br />';
+        echo '<label><input type="radio" name="ProjectimerCalendar_options[featured_image_as_background]" id="featured_image_as_background_always" ' . checked($options['featured_image_as_background'], 'always', false) . ' value="always" /> ' . __('Always', 'calendar-archives') . '</label><br />';
+        echo '<label><input type="radio" name="ProjectimerCalendar_options[featured_image_as_background]" id="featured_image_as_background_no" ' . checked($options['featured_image_as_background'], 'no', false) . ' value="no" /> ' . __('No', 'calendar-archives') . '</label><br />';
     }
 
     function field_firstDayOfWeek($options)
@@ -725,7 +725,7 @@ class CalendarArchivesOptions
         );
 
         // Ouput field to set first day of week
-        echo '<select name="CalendarArchives_options[first_day_of_week]" id="first_day_of_week">';
+        echo '<select name="ProjectimerCalendar_options[first_day_of_week]" id="first_day_of_week">';
         foreach ($weekdays as $value => $label)
         {
             echo '<option value="' . $value . '" ' . selected($options['first_day_of_week'], $value, false) . '>' . $label . '</option>';
@@ -736,25 +736,25 @@ class CalendarArchivesOptions
     function field_hideNoPostsMonths($options)
     {
         // Ouput field to toggle 'hide no posts months' flag
-        echo '<input type="checkbox" name="CalendarArchives_options[hide_no_posts_months]" id="hide_no_posts_months" ' . checked($options['hide_no_posts_months'], 'on', false) . ' /><p class="description">If enabled, months which don\'t have any posts will not be displayed in calendar.</p>';
+        echo '<input type="checkbox" name="ProjectimerCalendar_options[hide_no_posts_months]" id="hide_no_posts_months" ' . checked($options['hide_no_posts_months'], 'on', false) . ' /><p class="description">If enabled, months which don\'t have any posts will not be displayed in calendar.</p>';
     }
 
     function field_layout($options)
     {
         // Ouput field to set layout
-        echo '<input type="text" name="CalendarArchives_options[layout]" id="layout" size="10" value="' . $options['layout'] . '" /><p class="description">Calendar Archives currently supports two layouts, and you can buid your own.</p>';
+        echo '<input type="text" name="ProjectimerCalendar_options[layout]" id="layout" size="10" value="' . $options['layout'] . '" /><p class="description">Calendar Archives currently supports two layouts, and you can buid your own.</p>';
     }
 
     function field_reverseMonths($options)
     {
         // Ouput field to toggle 'reverse months' flag
-        echo '<input type="checkbox" name="CalendarArchives_options[reverse_months]" id="reverse_months" ' . checked($options['reverse_months'], 'on', false) . ' /><p class="description">If enabled, archive months will be displayed in descending order (December through January).</p>';
+        echo '<input type="checkbox" name="ProjectimerCalendar_options[reverse_months]" id="reverse_months" ' . checked($options['reverse_months'], 'on', false) . ' /><p class="description">If enabled, archive months will be displayed in descending order (December through January).</p>';
     }
 
     function field_showFuturePosts($options)
     {
         // Ouput field to toggle 'show future posts' flag
-        echo '<input type="checkbox" name="CalendarArchives_options[show_future_posts]" id="show_future_posts" ' . checked($options['show_future_posts'], 'on', false) . ' /><p class="description">If enabled, posts which have publish date in future will also be displayed in calendar (useful for events).</p>';
+        echo '<input type="checkbox" name="ProjectimerCalendar_options[show_future_posts]" id="show_future_posts" ' . checked($options['show_future_posts'], 'on', false) . ' /><p class="description">If enabled, posts which have publish date in future will also be displayed in calendar (useful for events).</p>';
     }
 
     function field_showImages($options)
@@ -762,7 +762,7 @@ class CalendarArchivesOptions
         // Ouput field to toggle 'show images' flag
         if ($options['writeableForImages'])
         {
-            echo '<input type="checkbox" name="CalendarArchives_options[show_images]" id="show_images" ' . checked($options['show_images'], 'on', false) . ' /><p class="description">Show post images. You can disable this to preserve bandwidth.</p><p><a href="options-general.php?page=calendar-archives.php&remove_cached_images=true" onclick="return confirm(\'Do you really want to remove cached images?\');">Remove cached images</a></p>';
+            echo '<input type="checkbox" name="ProjectimerCalendar_options[show_images]" id="show_images" ' . checked($options['show_images'], 'on', false) . ' /><p class="description">Show post images. You can disable this to preserve bandwidth.</p><p><a href="options-general.php?page=calendar-archives.php&remove_cached_images=true" onclick="return confirm(\'Do you really want to remove cached images?\');">Remove cached images</a></p>';
 
             if ($options['remoteImagesDownloadDisabled'])
             {
@@ -778,7 +778,7 @@ class CalendarArchivesOptions
     function field_weekdayBackgroundColor($options)
     {
         // Ouput field to set weekday background color
-        echo '<input type="text" class="backgroundColorPreview" id="weekday_background_color_preview" size="10" value="Preview" DISABLED /> <input type="text" name="CalendarArchives_options[weekday_background_color]" class="backgroundColorField" id="weekday_background_color" size="10" value="' . $options['weekday_background_color'] . '" />';
+        echo '<input type="text" class="backgroundColorPreview" id="weekday_background_color_preview" size="10" value="Preview" DISABLED /> <input type="text" name="ProjectimerCalendar_options[weekday_background_color]" class="backgroundColorField" id="weekday_background_color" size="10" value="' . $options['weekday_background_color'] . '" />';
     }
 
     function sectionDescription_background()
@@ -799,13 +799,13 @@ class CalendarArchivesOptions
 }
 
 // Create plugin object
-$CalendarArchives = new CalendarArchives();
+$ProjectimerCalendar = new ProjectimerCalendar();
 
 // Register activation hook as plugin's activate() method
-register_activation_hook(__FILE__, array(&$CalendarArchives, 'activate'));
+register_activation_hook(__FILE__, array(&$ProjectimerCalendar, 'activate'));
 
 // Register de-activation hook as plugin's deactivate() method
-register_deactivation_hook(__FILE__, array(&$CalendarArchives, 'deactivate'));
+register_deactivation_hook(__FILE__, array(&$ProjectimerCalendar, 'deactivate'));
 
 // Add filter for plugin's action links
-add_filter('plugin_action_links', array(&$CalendarArchives, 'plugin_action_links'), 10, 2);
+add_filter('plugin_action_links', array(&$ProjectimerCalendar, 'plugin_action_links'), 10, 2);
