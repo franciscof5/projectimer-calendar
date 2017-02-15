@@ -1,7 +1,7 @@
 {
 	"name": "f5sites/projectimer-calendar",
 	"description": "Projectimer Calendar. Part of Open Source Projectimer Project Innitiative. WordPress F5 Sites DEV projects.",
-	"type": "wordpress-muplugin",
+	"type": "wordpress-plugin",
 	"authors": [
 		{
 			"name": "Francisco Matelli Matulovic",
